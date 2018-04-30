@@ -51,7 +51,7 @@ var inorderPush = function(root, arr) {
   }
 };
 
-//ITERATIVE SOLUTION
+//ITERATIVE SOLUTION - Attempt #1
 //  1. Create a nodeStack with root as first element
 //  2.Set a node to root
 //  While nodeStack is not empty:
@@ -95,4 +95,40 @@ var inorderTraversal = function(root) {
   }
 
   return numbers;
+};
+
+//ITERATIVE SOLUTION - Attempt #2 (Better Solution)
+//  1. Make a nodeStack, initialize a currentNode to root.
+//  2. Until value returned
+//    I. Iterate through left branch until currentNode is null//
+//        if nodeStack is not empty
+//          A. Set currentNode to popped element of nodeStack
+//          B. Process currentNode data (push to array in this case)
+//          C. Set currentNode to currentNode.right
+//        else
+//         A. Return value
+var inorderTraversal = function(root) {
+  if (root === null || typeof root === undefined) {
+    return [];
+  }
+
+  var nodeStack = []
+  var node = root;
+  var numbers = [];
+
+  while (true) {
+      while(node !== null){
+          nodeStack.push(node);
+          node = node.left
+      }
+
+      if (nodeStack.length > 0) {
+        node = nodeStack.pop();
+        numbers.push(node.val);
+        node = node.right;
+      } else {
+          return numbers;
+      }
+      
+  }
 };
