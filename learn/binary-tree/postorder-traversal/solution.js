@@ -51,3 +51,30 @@ var postorderPush = function(root, arr) {
   postorderPush(root.right, arr);
   arr.push(root.val);
 };
+
+//ITERATIVE SOLUTION - Attempt 1
+// *** use a queue to store numbers and iterate similar to pre-order, (left pushed first because we want right to get inserted first/ **
+var postorderTraversal = function(root) {
+  if (root === null || typeof root === undefined) {
+    return [];
+  }
+
+  var nodeStack = [root]
+  var node;
+  var numbers = [];
+
+  while (nodeStack.length > 0) {
+      node = nodeStack.pop();
+      numbers.unshift(node.val);
+
+      if (node.left !== null) {
+        nodeStack.push(node.left);
+      }
+
+      if(node.right !== null) {
+        nodeStack.push(node.right);
+      }
+  }
+
+  return numbers;
+};

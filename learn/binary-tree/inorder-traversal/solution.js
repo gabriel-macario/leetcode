@@ -128,7 +128,6 @@ var inorderTraversal = function(root) {
         node = node.right;
       } else {
           return numbers;
-      }
-      
+      }    
   }
 };
